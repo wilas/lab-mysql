@@ -1,0 +1,29 @@
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+port=3306
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+# for mysql-slave
+server-id=2
+log-bin=mysql-bin
+report-host=77.77.77.112
+master-host=77.77.77.111
+master-user=repl
+master-password=password
+master-connect-retry=60
+relay-log=slave-relay-bin
+relay-log-index=slave-relay-bin.index
+#innodb_flush_log_at_trx_commit=1 
+#sync_binlog=1
+
+# Specify database to replicate
+# replicate-do-db=example_db #input the database which should be repl.
+# replicate-wild-do-table=example_db.% 
+# replicate-ignore-db=test #input the database that should be ignored for repl.
+# replicate-wild-ignore-table=test.% 
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid

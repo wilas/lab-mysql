@@ -13,9 +13,9 @@ host { "$fqdn":
     host_aliases => "$hostname",
 }
 
-host { "mammoth01.farm":
-    ip          => "77.77.77.151",
-    host_aliases => "mammoth01",
+host { "kmammoth01.farm":
+    ip          => "77.77.77.111",
+    host_aliases => "kmammoth01",
 }
 
 #firewall manage
@@ -37,4 +37,12 @@ Firewall {
 }
 class { "basic_firewall": }
 
-#class { "mysql_cl": }
+$mysql_password="password"
+class { "mysql_cl": }
+firewall { '100 allow mysql':
+    state  => ['NEW'],
+    dport  => '3306',
+    proto  => 'tcp',
+    action => accept,
+}
+

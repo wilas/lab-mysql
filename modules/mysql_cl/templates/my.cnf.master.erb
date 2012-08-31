@@ -1,0 +1,21 @@
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+port=3306
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+# for mysql-master
+server-id=1
+log-bin=mysql-bin
+#innodb_flush_log_at_trx_commit=1 
+#sync_binlog=1
+
+# Specify database to replicate
+# binlog-do-db=example_db #input the database which should be repl.
+# binlog-ignore-db=mysql  #input the database that should be ignored for repl.
+# binlog-ignore-db=test
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
