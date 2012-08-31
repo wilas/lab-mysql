@@ -11,8 +11,8 @@ Basici mysql cluster replication (master-slave) created via puppet.
 
 ### 1. Install mysql server:
 
- - install mysql-server (yum install mysql-server)
- - set a password for mysql root user: /usr/bin/mysqladmin -u root password "password"
+ - install mysql-server (`yum install mysql-server`)
+ - set a password for mysql root user: `/usr/bin/mysqladmin -u root password "password"`
  - configure firewall (default port 3306)
 
 ### 2. Config /etc/my.cnf section [mysqld]
@@ -20,7 +20,7 @@ Basici mysql cluster replication (master-slave) created via puppet.
     log-bin=mysql-bin
     server-id=1
 
-and restart mysql master (/etc/init.d/mysqld restart)
+and restart mysql master (`/etc/init.d/mysqld restart`)
 
 ### 3. Create Slave user and check Master status:
 
@@ -41,7 +41,7 @@ Example output:
 ### 4. Backup database and transfer to slave:
 
     FLUSH TABLES WITH READ LOCK;
-    mysqldump --all-databases --master-data -p"password" > mysql_master.dmp)
+    mysqldump --all-databases --master-data -p"password" > mysql_master.dmp
     UNLOCK TABLES;
 
 `--master-data`  automatically appends the `CHANGE MASTER TO` statement required on the slave to start the replication process
@@ -51,8 +51,8 @@ Example output:
 
 ### 1. Install mysql server
 
- - install mysql-server (yum install mysql-server)
- - set a password for mysql root user: /usr/bin/mysqladmin -u root password "password"
+ - install mysql-server (`yum install mysql-server`)
+ - set a password for mysql root user: `/usr/bin/mysqladmin -u root password "password"`
  - configure firewall (default port 3306)
 
 ### 2. Config /etc/my.cnf section [mysqld]
@@ -82,15 +82,18 @@ Example output:
 ### 4. Check Slave status:
 
 on slave machine:
+
     SHOW SLAVE STATUS\G
 
 on master machine:
+
     SHOW SLAVE HOSTS;
 
 ### 5. Trouble shooting:
 
 Problem:
 Last_IO_Error: Got fatal error 1236 from master when reading data from binary log
+
 Solution:
 
     Slave: stop slave;
