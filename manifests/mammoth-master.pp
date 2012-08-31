@@ -49,15 +49,15 @@ firewall { '100 allow mysql':
 }
 
 #TEST ZONE - uncomment for tests:
-mysql_cl::db { "testme":
-    user     => "testme",
-    password => "password",
-}
+#mysql_cl::db { "testme":
+#    user     => "testme",
+#    password => "password",
+#}
 #create table and insert some data
-exec { 'insert data into testme':
-    command     => "mysql -uroot -p\"${mysql_password}\" testme < /vagrant/tools/testme.sql",
-    path        => "/bin:/sbin:/usr/bin:/usr/sbin",
-    subscribe   => Mysql_cl::Db["testme"],
-    refreshonly => true,
-}
+#exec { 'insert data into testme':
+#    command     => "mysql -uroot -p\"${mysql_password}\" testme < /vagrant/tools/testme.sql",
+#    path        => "/bin:/sbin:/usr/bin:/usr/sbin",
+#    subscribe   => Mysql_cl::Db["testme"],
+#    refreshonly => true,
+#}
 
