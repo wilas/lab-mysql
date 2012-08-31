@@ -22,7 +22,7 @@ Basici mysql cluster replication (master-slave) created via puppet.
 
 and restart mysql master (`/etc/init.d/mysqld restart`)
 
-### 3. Create Slave user and check Master status:
+### 3. Create Slave user:
 
     grant replication slave, replication client on *.* to 'repl'@'%' identified by "password"; flush provoleges;
 
@@ -106,11 +106,15 @@ Solution:
 
 ## Bibliography:
 
-- toplink: http://xorl.wordpress.com/2011/03/13/how-to-mysql-masterslave-replication/
-- http://www.woblag.com/2012/03/setting-up-master-slave-replication-on.html
+- toplink: http://dev.mysql.com/doc/refman/5.1/en/replication-howto.html
+- step by step: http://aciddrop.com/2008/01/10/step-by-step-how-to-setup-mysql-database-replication/
+- step by step: http://www.codefutures.com/mysql-replication-howto/
+- http://erlycoder.com/43/mysql-master-slave-and-master-master-replication-step-by-step-configuration-instructions-
 - http://www.bitbull.ch/wiki/index.php/MySQL_Replication_HowTo
+- http://xorl.wordpress.com/2011/03/13/how-to-mysql-masterslave-replication/
 - http://studioshorts.com/blog/2010/03/mysql-master-slave-replication-on-centos-rhel/
-- http://techblog.zabuchy.net/2011/master-slave-replication-in-mysql-5-5/
+- http://www.woblag.com/2012/03/setting-up-master-slave-replication-on.html
+
 
 ## Tests:
 - look to file: manifests/mammoth-master.pp
