@@ -1,13 +1,27 @@
 # mysql master-slave demo:
+
 Basic mysql cluster replication (master-slave) created via puppet.
 
 ## VM description:
 
  - OS: Scientific linux 6
- - master vm: mammoth01
- - slave vm: mammoth02
+ - master vm: mammoth01.farm
+ - slave vm: mammoth02.farm
 
-## Master Node step by step
+
+## Howto
+
+ - create SL64_box using [veewee-SL64-box](https://github.com/wilas/veewee-SL64-box)
+ - copy ssh_keys from [ssh-gerwazy](https://github.com/wilas/ssh-gerwazy)
+
+```
+    vagrant up
+    ssh root@77.77.77.111 #mammoth01
+    ssh root@77.77.77.112 #mammoth02
+    vagrant destroy
+```
+
+## Master Node step by step (theory)
 
 ### 1. Install mysql server:
 
@@ -47,7 +61,7 @@ Example output:
 `--master-data`  automatically appends the `CHANGE MASTER TO` statement required on the slave to start the replication process
 
 
-## Slave Node step by step
+## Slave Node step by step (theory)
 
 ### 1. Install mysql server
 
