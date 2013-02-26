@@ -1,11 +1,10 @@
-stage { "base": before => Stage["main"] }
-stage { "tuning": before => Stage["main"] }
+stage { "base": before  => Stage["main"] }
 stage { "last": require => Stage["main"] }
 
-#basic
-class { "install_repos": stage => "base" }
+class { "yum_repos": stage     => "base" }
 class { "basic_package": stage => "base" }
-class { "user::root": stage    => "base"}
+class { "user::root": stage    => "base" }
+Class["yum_repos"] -> Class["basic_package"] -> Class["user::root"]
 
 #hosts:
 host { "$fqdn":
@@ -13,9 +12,9 @@ host { "$fqdn":
     host_aliases => "$hostname",
 }
 
-host { "kmammoth01.farm":
+host { "mammoth01.farm":
     ip          => "77.77.77.111",
-    host_aliases => "kmammoth01",
+    host_aliases => "mammoth01",
 }
 
 #firewall manage

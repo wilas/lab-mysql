@@ -1,0 +1,8 @@
+---
+:hierarchy:
+    - %{::osfamily}-pkgs
+    - %{::osfamily}-repos
+:backends:
+    - yaml
+:yaml:
+    :datadir: 'hieradata'

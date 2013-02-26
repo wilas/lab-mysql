@@ -5,7 +5,7 @@ Vagrant::Config.run do |config|
   
   config.vm.define :mammoth01 do |db_config|  
     vm_name= "mammoth01"
-    db_config.vm.box = "SL64_box"
+    db_config.vm.box = "SL6"
     db_config.vm.host_name = "#{vm_name}.farm"
     db_config.vm.customize ["modifyvm", :id, "--memory", "512", "--name", "#{vm_name}"]
   
@@ -13,6 +13,7 @@ Vagrant::Config.run do |config|
     db_config.vm.share_folder "v-root", "/vagrant", "."
 
     db_config.vm.provision :puppet do |puppet|
+        puppet.options = "--hiera_config hiera.yaml"
         puppet.manifests_path = "manifests"
         puppet.manifest_file  = "mammoth-master.pp"
         puppet.module_path = "modules"
@@ -21,7 +22,7 @@ Vagrant::Config.run do |config|
   
   config.vm.define :mammoth02 do |db_config|  
     vm_name= "mammoth02"
-    db_config.vm.box = "SL64_box"
+    db_config.vm.box = "SL6"
     db_config.vm.host_name = "#{vm_name}.farm"
     db_config.vm.customize ["modifyvm", :id, "--memory", "512", "--name", "#{vm_name}"]
   
@@ -29,6 +30,7 @@ Vagrant::Config.run do |config|
     db_config.vm.share_folder "v-root", "/vagrant", "."
 
     db_config.vm.provision :puppet do |puppet|
+        puppet.options = "--hiera_config hiera.yaml"
         puppet.manifests_path = "manifests"
         puppet.manifest_file  = "mammoth-slave.pp"
         puppet.module_path = "modules"
