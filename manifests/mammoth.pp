@@ -16,7 +16,7 @@ Firewall {
 hiera_include('classes')
 # Classes order
 Class['yum_repos'] -> Class['basic_package'] -> Class['user::root']
-CLass['basic_package'] -> Class['mysql_cl']
+Class['basic_package'] -> Class['mysql_cl']
 # Extra firewall rules
 firewall { '100 allow mysql':
     state  => ['NEW'],
