@@ -2,11 +2,11 @@
 datadir=/var/lib/mysql
 socket=/var/lib/mysql/mysql.sock
 user=mysql
-port=3306
+port=<%=port%>
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
 # for mysql-master
-server-id=1
+server-id=<%=server_id%>
 log-bin=mysql-bin
 #innodb_flush_log_at_trx_commit=1 
 #sync_binlog=1

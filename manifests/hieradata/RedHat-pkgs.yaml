@@ -1,4 +1,6 @@
 ---
+classes :
+    - 'basic_package'
 basic_package : - 'wget'
                 - 'openssh-clients'
                 - 'mc'
@@ -16,4 +18,4 @@ vagrant_box_package :   - 'gcc'
                         - 'make'
                         - 'bzip2'
                         - 'curl'
-gem_package : - 'puppet-lint'
+gem_package : -

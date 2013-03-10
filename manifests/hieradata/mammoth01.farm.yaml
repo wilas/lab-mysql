@@ -1,0 +1,9 @@
+---
+classes :
+    - 'mysql_cl'
+mysql_cl::is_master : true
+mysql_cl::mysql_password : 'password'
+mysql_cl::repl_user : 'repl'
+mysql_cl::repl_password : 'password'
+mysql_cl::mysql_port : 3306
+mysql_cl::server_id : 1
