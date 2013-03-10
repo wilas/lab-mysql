@@ -15,8 +15,11 @@ Vagrant::Config.run do |config|
     node_config.vm.provision :puppet do |puppet|
         puppet.options = "--hiera_config hiera.yaml"
         puppet.manifests_path = "manifests"
-        puppet.manifest_file  = "mammoth-master.pp"
+        puppet.manifest_file  = "mammoth.pp"
         puppet.module_path = "modules"
+        puppet.facter = {
+            "demo_database" => 'no', #yes - change for tests
+        }
     end
   end
   
@@ -32,7 +35,7 @@ Vagrant::Config.run do |config|
     node_config.vm.provision :puppet do |puppet|
         puppet.options = "--hiera_config hiera.yaml"
         puppet.manifests_path = "manifests"
-        puppet.manifest_file  = "mammoth-slave.pp"
+        puppet.manifest_file  = "mammoth.pp"
         puppet.module_path = "modules"
     end
   end

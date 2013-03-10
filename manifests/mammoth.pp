@@ -26,11 +26,26 @@ firewall { '100 allow mysql':
 }
 
 # In real world from DNS
-host { $fqdn:
-    ip           => $ipaddress_eth1,
-    host_aliases => $hostname,
-}
 host { 'mammoth01.farm':
     ip           => '77.77.77.111',
     host_aliases => 'mammoth01',
+}
+host { 'mammoth02.farm':
+    ip           => '77.77.77.112',
+    host_aliases => 'mammoth02',
+}
+
+# TEST ZONE
+if $::demo_database == 'yes' {
+    mysql_cl::db { 'testme':
+        user     => 'testme',
+        password => 'password',
+    }
+    # create table and insert some data
+    exec { 'insert data into testme':
+        command     => "mysql -uroot -p\"${mysql_cl::mysql_password}\" testme < /vagrant/tools/testme.sql",
+        path        => '/bin:/sbin:/usr/bin:/usr/sbin',
+        subscribe   => Mysql_cl::Db['testme'],
+        refreshonly => true,
+    }
 }
